@@ -14,7 +14,8 @@ export const Header = () => {
             </Link>
           </li>
           <li>
-            <Link to='sign-in'>
+            <Link to='sign-in' className={s.header__controls}>
+              <span className='i user-circle' />
               <span>Sign In</span>
             </Link>
           </li>

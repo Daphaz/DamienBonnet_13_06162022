@@ -1,5 +1,5 @@
-import { Layout } from '@/components/layout/layout';
+import { HomeTemplate } from '@/components/template/home';
 
 export const HomePage = () => {
-  return <Layout>test de main</Layout>;
+  return <HomeTemplate />;
 };
