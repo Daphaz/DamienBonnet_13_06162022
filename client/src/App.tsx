@@ -1,5 +1,7 @@
+import { Root } from './components/root';
+
 function App() {
-	return <div>App</div>
+  return <Root />;
 }
 
-export default App
+export default App;

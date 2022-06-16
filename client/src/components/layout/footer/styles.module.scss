@@ -1,0 +1,7 @@
+@import '@/styles/shared.scss';
+
+.footer {
+  @extend %center;
+  border-top: 1px solid $clr-grey-300;
+  padding: 3.2rem 0 2.4rem;
+}
