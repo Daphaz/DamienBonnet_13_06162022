@@ -1,0 +1,56 @@
+{
+  //#region  //*=========== React ===========
+  "useState": {
+    "prefix": "us",
+    "body": [
+      "const [${1}, set${1/(^[a-zA-Z])(.*)/${1:/upcase}${2}/}] = useState<$3>(${2:initial${1/(^[a-zA-Z])(.*)/${1:/upcase}${2}/}})$0"
+    ]
+  },
+  "useEffect": {
+    "prefix": "uf",
+    "body": ["useEffect(() => {", "  $0", "}, []);"]
+  },
+  "useRef": {
+    "prefix": "urf",
+    "body": ["const ${1:someRef} = useRef<null>($0)"]
+  },
+  //#endregion  //*======== React ===========
+
+  //#region  //*=========== Commons ===========
+  "Region": {
+    "prefix": "reg",
+    "scope": "javascript, typescript, javascriptreact, typescriptreact",
+    "body": [
+      "//#region  //*=========== ${1} ===========",
+      "${TM_SELECTED_TEXT}$0",
+      "//#endregion  //*======== ${1} ==========="
+    ]
+  },
+  "Import style module": {
+    "prefix": "is",
+    "scope": "javascript, typescript, javascriptreact, typescriptreact",
+    "body": ["import s from './styles.module.scss';"]
+  },
+  "Region CSS": {
+    "prefix": "regc",
+    "scope": "css, scss",
+    "body": [
+      "/* #region  /**=========== ${1} =========== */",
+      "${TM_SELECTED_TEXT}$0",
+      "/* #endregion  /**======== ${1} =========== */"
+    ]
+  },
+  "import Shared file": {
+    "prefix": "ish",
+    "scope": "css, scss",
+    "body": ["@import '@/styles/shared.scss';"]
+  },
+  //#endregion  //*======== Commons ===========
+
+  //#region  //*=========== Snippet Wrap ===========
+  "Wrap with Fragment": {
+    "prefix": "ff",
+    "body": ["<>", "\t${TM_SELECTED_TEXT}", "</>"]
+  },
+  //#endregion  //*======== Snippet Wrap ===========
+}
