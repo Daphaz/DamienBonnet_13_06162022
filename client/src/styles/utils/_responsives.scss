@@ -1,0 +1,11 @@
+@mixin lg {
+  @media (min-width: 920px) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: 720px) {
+    @content;
+  }
+}

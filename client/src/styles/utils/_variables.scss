@@ -1,0 +1,20 @@
+:root {
+  --font-body: 'Avenir', Helvetica, Arial, sans-serif;
+  --clr-white: #ffffff;
+  --clr-black: #12002b;
+  --clr-primary-400: #00bc77;
+  --clr-primary-300: #42b983;
+  --clr-grey-700: #222222;
+  --clr-grey-600: #2c3e50;
+  --clr-grey-300: #cccccc;
+}
+
+$font-body: var(--font-body);
+
+$clr-white: var(--clr-white);
+$clr-black: var(--clr-black);
+$clr-primary-400: var(--clr-primary-400);
+$clr-primary-300: var(--clr-primary-300);
+$clr-grey-700: var(--clr-grey-700);
+$clr-grey-600: var(--clr-grey-600);
+$clr-grey-300: var(--clr-grey-300);
