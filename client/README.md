@@ -6,6 +6,7 @@
 > creation of the website in React.
 
 ## Install
+
 ⚠️ for this project you need `node 14` install
 
 ```sh
