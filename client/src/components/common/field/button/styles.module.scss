@@ -1,0 +1,55 @@
+@import '@/styles/shared.scss';
+
+/* #region  /**=========== Block =========== */
+.btn {
+  @extend %center;
+  position: relative;
+  padding: 8px;
+  background-color: $clr-primary-400;
+  color: $clr-white;
+
+  &:focus {
+    outline: none;
+    border: none;
+  }
+}
+/* #endregion  /**======== Block =========== */
+
+/* #region  /**=========== Element =========== */
+.text {
+  color: currentColor;
+  opacity: 1;
+  transition: 0.3s ease;
+}
+.spinner {
+  @extend %center;
+  @extend %fit;
+  opacity: 0;
+  transition: 0.3s ease;
+  path {
+    stroke: currentColor;
+  }
+}
+/* #endregion  /**======== Element =========== */
+
+/* #region  /**=========== Modifier =========== */
+.full {
+  width: 100%;
+}
+.underline {
+  .text {
+    text-decoration: underline;
+  }
+}
+.loading {
+  .spinner {
+    opacity: 1;
+  }
+  .text {
+    opacity: 0;
+  }
+}
+.big {
+  @extend %desc-18;
+}
+/* #endregion  /**======== Modifier =========== */

@@ -25,5 +25,12 @@ body {
 
 main {
   flex: 1;
-  @extend %flex;
+
+  &.flex {
+    @extend %flex;
+  }
+
+  &.dark {
+    background-color: $clr-black;
+  }
 }
