@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 
-import { DashboardPage, ErrorPage, HomePage, SignInPage } from '@/pages';
+import { ErrorPage, HomePage, ProfilePage, SignInPage } from '@/pages';
 
 type RouteType = {
   name: string;
@@ -15,14 +15,14 @@ const routes: RouteType[] = [
     element: HomePage,
   },
   {
-    name: 'SignIn',
-    path: 'sign-in',
+    name: 'Login',
+    path: 'login',
     element: SignInPage,
   },
   {
-    name: 'Dashboard',
-    path: '/dashboard',
-    element: DashboardPage,
+    name: 'Profile',
+    path: '/profile',
+    element: ProfilePage,
   },
   {
     name: 'Error',

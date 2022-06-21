@@ -1,0 +1,21 @@
+@import '@/styles/shared.scss';
+
+/* #region  /**=========== Block =========== */
+.container {
+  flex: 1;
+  @extend %flex-col;
+  align-items: center;
+}
+/* #endregion  /**======== Block =========== */
+
+/* #region  /**=========== Element =========== */
+.title {
+  @extend %title-32;
+  color: $clr-white;
+  text-align: center;
+  margin: 2.2rem 0px;
+}
+.edit_btn {
+  margin-bottom: 3.2rem;
+}
+/* #endregion  /**======== Element =========== */

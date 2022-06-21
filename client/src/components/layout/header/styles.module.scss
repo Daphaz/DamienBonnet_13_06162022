@@ -20,14 +20,18 @@
     }
   }
 
+  .align {
+    @extend %align;
+  }
+
   &__controls {
     @extend %align;
     margin-right: 0.8rem;
-    font-weight: bold;
 
     span:last-child {
       padding-left: 0.4rem;
       line-height: 1;
+      font-weight: bold;
     }
 
     &:hover {
