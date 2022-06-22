@@ -21,6 +21,7 @@
   color: currentColor;
   opacity: 1;
   transition: 0.3s ease;
+  font-weight: bold;
 }
 .spinner {
   @extend %center;

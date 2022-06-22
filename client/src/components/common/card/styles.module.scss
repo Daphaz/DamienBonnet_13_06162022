@@ -38,6 +38,9 @@
 .description {
   font-size: 1.8rem;
   margin-bottom: 1.6rem;
+  @include md {
+    margin-bottom: 0;
+  }
 }
 .cta {
   @include md {
