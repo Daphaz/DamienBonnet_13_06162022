@@ -65,11 +65,6 @@ paths:
         - User Module
       summary: User Profile API
       description: API for fetching a user profile
-      parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
       produces:
         - application/json
       responses:
@@ -89,10 +84,6 @@ paths:
       summary: User Profile API
       description: API for updating a user profile
       parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
         - in: body
           name: body
           description: Update user profile attributes
@@ -108,6 +99,173 @@ paths:
             $ref: '#/definitions/ApiResponse'
         '400':
           description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /account:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - Account Module (admin)
+      summary: create a account
+      description: API for Create account
+      parameters:
+        - in: body
+          name: body
+          description: Create account Payload
+          required: true
+          schema:
+            $ref: '#/definitions/CreateAccountDto'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Account Successfully created
+          schema:
+            $ref: '#/definitions/AccountResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /accounts:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Account Module (user)
+      summary: get all accounts
+      description: API for get all account by user id (Bearer decode)
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Request Successfully
+          schema:
+            $ref: '#/definitions/GetAccountsResponse'
+        '401':
+          description: Unauthorize
+        '404':
+          description: Documents not Found 
+        '500':
+          description: Internal Server Error
+  /account/{account_id}/transactions:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - Account Module (user)
+      summary: get account transaction by account id
+      description: API for get all transaction from the account id
+      parameters:
+      - in: path
+        name: account_id
+        description: The account id document that needs to be fetched.
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: define range date Payload
+        required: true
+        schema:
+          $ref: '#/definitions/TransactionFilterDto'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Request Successfully
+          schema:
+            $ref: '#/definitions/GetAccountTransactionResponse'
+        '401':
+          description: Unauthorize
+        '404':
+          description: Documents not Found 
+        '500':
+          description: Internal Server Error
+  /transaction:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction Module
+      summary: create a transaction
+      description: API for create a transaction
+      parameters:
+        - in: body
+          name: body
+          description: Create transaction Payload
+          required: true
+          schema:
+            $ref: '#/definitions/CreateTransactionDto'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Request Successfully
+          schema:
+            $ref: '#/definitions/GetAccountTransactionResponse'
+        '401':
+          description: Unauthorize
+        '404':
+          description: Documents not Found 
+        '500':
+          description: Internal Server Error
+  /transaction/{transaction_id}:
+    patch:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction Module
+      summary: update a transaction
+      description: API for update a transaction by id
+      parameters:
+        - in: path
+          name: transaction_id
+          description: unique id of transaction document
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Create transaction Payload
+          required: true
+          schema:
+            $ref: '#/definitions/UpdateTransactionDto'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Request Successfully
+          schema:
+            $ref: '#/definitions/UpdateTransactionResponse'
+        '401':
+          description: Unauthorize
+        '404':
+          description: Documents not Found 
+        '500':
+          description: Internal Server Error
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction Module
+      summary: delete a transaction
+      description: API for delete a transaction by id
+      parameters:
+        - in: path
+          name: transaction_id
+          description: unique id of transaction document
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Request Successfully
+          schema:
+            $ref: '#/definitions/DeleteTransactionResponse'
+        '401':
+          description: Unauthorize
+        '404':
+          description: Documents not Found 
         '500':
           description: Internal Server Error
 securityDefinitions:
@@ -163,4 +321,184 @@ definitions:
       firstName:
         type: string
       lastName:
+        type: string
+  Account:
+    type: object
+    properties:
+      id:
+        type: string
+        description: uinque id of document
+      account_type: 
+        type: string
+        enum:
+          - CHECKING
+          - SAVINGS
+          - CREDIT_CARD
+        description: The type of account
+      amount: 
+        type: integer
+        description: the current balance of account
+      iban:
+        type: number
+        description: unique public id of this account
+      createdAt:
+        type: string
+        format: date
+        description: created date of document
+      updatedAt:
+        type: string
+        format: date
+        description: date of the last update of document
+  Transaction:
+    type: object
+    properties:
+      id:
+        type: string
+        description: unique id of document
+      account_id:
+        type: string
+        description: unique id of account
+      description:
+        type: string
+        description: information about transcation
+      transaction_type:
+        type: string
+        description: must be a enum in the future
+      category:
+        type: string
+        description: must be a enum in the future
+      notes:
+        type: string
+        description: user note about transaction
+      amount:
+        type: integer
+        description: amount of transaction
+      balance:
+        type: integer
+        description: the updated current balance of account
+      date:
+        type: string
+        format: date
+        description: date of transaction
+      createdAt:
+        type: string
+        format: date
+        description: created date of document
+      updatedAt:
+        type: string
+        format: date
+        description: date of the last update of document
+  CreateAccountDto:
+    type: object
+    required:
+    - account_type
+    - amount
+    properties:
+      account_type:
+        type: string
+        enum:
+          - CHECKING
+          - SAVINGS
+          - CREDIT_CARD
+        description: type of account
+      amount:
+        type: integer
+        description: the amount of account
+  CreateTransactionDto:
+    type: object
+    properties:
+      account_id:
+        type: string
+        description: unique account id document
+      description:
+        type: string
+        description: information about transcation
+      transaction_type:
+        type: string
+        description: must be a enum in the future
+      category:
+        type: string
+        description: must be a enum in the future
+      notes:
+        type: string
+        description: user note about transaction
+      amount:
+        type: integer
+        description: amount of transaction
+    required:
+      - account_id
+      - description
+      - transaction_type
+      - category
+      - amount
+  TransactionFilterDto:
+    type: object
+    properties:
+      startDate:
+        type: string
+        format: date
+        description: by default the first day of current month
+      endDate:
+        type: string
+        format: date
+        description: by default the last day of current month
+  UpdateTransactionDto:
+    type: object
+    properties:
+      category:
+        type: string
+        description: must be a enum in the future
+      notes:
+        type: string
+        description: user note about transaction
+  AccountResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        $ref: "#/definitions/Account"
+  GetAccountsResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: array
+        items:
+          $ref: '#/definitions/Account'
+  GetAccountTransactionResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        body:
+          properties:
+            account:
+              $ref: '#/definitions/Account'
+            transactions:
+              type: array
+              items:
+                $ref: '#/definitions/Transaction'
+  UpdateTransactionResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        $ref: '#/definitions/Transaction'
+  DeleteTransactionResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
         type: string
