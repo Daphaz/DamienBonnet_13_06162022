@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import s from './styles.module.scss';
@@ -10,10 +11,10 @@ export const Header = () => {
   const { user } = useAppSelector(userSelector);
   const dispatch = useAppDispatch();
 
-  const onLogout = () => {
+  const onLogout = useCallback(() => {
     dispatch(logout());
     navigate('/');
-  };
+  }, [dispatch, navigate]);
 
   return (
     <header className={s.header}>
