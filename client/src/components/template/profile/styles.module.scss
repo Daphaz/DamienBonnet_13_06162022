@@ -6,6 +6,10 @@
   @extend %flex-col;
   align-items: center;
 }
+.list {
+  @extend %align;
+  flex-wrap: wrap;
+}
 /* #endregion  /**======== Block =========== */
 
 /* #region  /**=========== Element =========== */
@@ -19,3 +23,9 @@
   margin-bottom: 3.2rem;
 }
 /* #endregion  /**======== Element =========== */
+
+/* #region  /**=========== Modifier =========== */
+.only {
+  @extend %sr-only;
+}
+/* #endregion  /**======== Modifier =========== */

@@ -1,0 +1,47 @@
+@import '@/styles/shared.scss';
+
+/* #region  /**=========== Block =========== */
+.root {
+  @extend %between;
+  flex-direction: column;
+  background-color: $clr-white;
+  padding: 2.4rem;
+  margin: 0 auto 3.2rem;
+  width: 80%;
+
+  @include md {
+    flex-direction: row;
+  }
+}
+.wrapper {
+  flex: 1;
+  width: 100%;
+
+  @include md {
+    button {
+      width: 200px;
+      margin-top: 1.6rem;
+    }
+  }
+}
+/* #endregion  /**======== Block =========== */
+
+/* #region  /**=========== Element =========== */
+.title {
+  font-size: 1.8rem;
+  font-weight: normal;
+}
+.amount {
+  font-size: 4rem;
+  font-weight: bold;
+}
+.description {
+  font-size: 1.8rem;
+  margin-bottom: 1.6rem;
+}
+.cta {
+  @include md {
+    flex: 0;
+  }
+}
+/* #endregion  /**======== Element =========== */

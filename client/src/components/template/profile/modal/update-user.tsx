@@ -1,6 +1,9 @@
+import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
 import s from './styles.module.scss';
+
+import { useOnClickOutside } from '@/hooks/useClickOutSide';
 
 import { Button, InputText } from '@/components/common/field';
 
@@ -18,6 +21,7 @@ interface ModalUpdateUserProps {
 }
 
 export const ModalUpdateUser = ({ handleClose }: ModalUpdateUserProps) => {
+  const rootRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
   const { user, isError, isFetching } = useAppSelector(userSelector);
 
@@ -50,8 +54,10 @@ export const ModalUpdateUser = ({ handleClose }: ModalUpdateUserProps) => {
     }
   });
 
+  useOnClickOutside(rootRef, () => handleClose());
+
   return (
-    <div className={s.root}>
+    <div className={s.root} ref={rootRef}>
       <h2 className={s.title}>Edit your profile</h2>
 
       <form className={s.form} onSubmit={onSubmit}>

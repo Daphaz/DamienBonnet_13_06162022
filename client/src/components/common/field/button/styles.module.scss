@@ -51,7 +51,10 @@
   }
 }
 .big {
-  @extend %desc-18;
+  height: 40px;
+  .text {
+    @extend %desc-18;
+  }
 }
 .small {
   padding: 10px;
